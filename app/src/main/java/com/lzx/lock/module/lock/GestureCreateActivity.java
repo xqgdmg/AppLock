@@ -14,7 +14,7 @@ import com.lzx.lock.utils.LockPatternUtils;
 import com.lzx.lock.utils.SystemBarHelper;
 import com.lzx.lock.utils.ToastUtil;
 import com.lzx.lock.widget.LockPatternView;
-import com.lzx.lock.widget.LockPatternViewPattern;
+import com.lzx.lock.widget.LockPatternViewListener;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class GestureCreateActivity extends BaseActivity implements View.OnClickL
     private static final String KEY_PATTERN_CHOICE = "chosenPattern";
     private static final String KEY_UI_STAGE = "uiStage";
     private LockPatternUtils mLockPatternUtils;
-    private LockPatternViewPattern mPatternViewPattern;
+    private LockPatternViewListener mPatternViewPattern;
     private GestureCreatePresenter mGestureCreatePresenter;
     private RelativeLayout mTopLayout;
 
@@ -66,8 +66,8 @@ public class GestureCreateActivity extends BaseActivity implements View.OnClickL
      */
     private void initLockPatternView() {
         mLockPatternUtils = new LockPatternUtils(this);
-        mPatternViewPattern = new LockPatternViewPattern(mLockPatternView);
-        mPatternViewPattern.setPatternListener(new LockPatternViewPattern.onPatternListener() {
+        mPatternViewPattern = new LockPatternViewListener(mLockPatternView);
+        mPatternViewPattern.setPatternListener(new LockPatternViewListener.onPatternListener() {
             @Override
             public void onPatternDetected(List<LockPatternView.Cell> pattern) {
                 mGestureCreatePresenter.onPatternDetected(pattern, mChosenPattern, mUiStage);

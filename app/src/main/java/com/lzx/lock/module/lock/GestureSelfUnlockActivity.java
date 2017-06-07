@@ -15,7 +15,7 @@ import com.lzx.lock.utils.LockPatternUtils;
 import com.lzx.lock.utils.SpUtil;
 import com.lzx.lock.utils.SystemBarHelper;
 import com.lzx.lock.widget.LockPatternView;
-import com.lzx.lock.widget.LockPatternViewPattern;
+import com.lzx.lock.widget.LockPatternViewListener;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class GestureSelfUnlockActivity extends BaseActivity {
 
     private LockPatternView mLockPatternView;
     private LockPatternUtils mLockPatternUtils;
-    private LockPatternViewPattern mPatternViewPattern;
+    private LockPatternViewListener mPatternViewPattern;
     private int mFailedPatternAttemptsSinceLastTimeout = 0;
     private String actionFrom;//按返回键的操作
     private String pkgName; //解锁应用的包名
@@ -67,8 +67,8 @@ public class GestureSelfUnlockActivity extends BaseActivity {
      */
     private void initLockPatternView() {
         mLockPatternUtils = new LockPatternUtils(this);
-        mPatternViewPattern = new LockPatternViewPattern(mLockPatternView);
-        mPatternViewPattern.setPatternListener(new LockPatternViewPattern.onPatternListener() {
+        mPatternViewPattern = new LockPatternViewListener(mLockPatternView);
+        mPatternViewPattern.setPatternListener(new LockPatternViewListener.onPatternListener() {
             @Override
             public void onPatternDetected(List<LockPatternView.Cell> pattern) {
                 if (mLockPatternUtils.checkPattern(pattern)) { //解锁成功,更改数据库状态

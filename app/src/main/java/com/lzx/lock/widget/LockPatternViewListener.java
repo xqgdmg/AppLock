@@ -7,7 +7,7 @@ import java.util.List;
  * 图形解锁监听实现类
  */
 
-public class LockPatternViewPattern implements LockPatternView.OnPatternListener {
+public class LockPatternViewListener implements LockPatternView.OnPatternListener {
 
     private LockPatternView mLockPatternView;
     private onPatternListener mPatternListener;
@@ -20,7 +20,7 @@ public class LockPatternViewPattern implements LockPatternView.OnPatternListener
         mPatternListener = patternListener;
     }
 
-    public LockPatternViewPattern(LockPatternView lockPatternView) {
+    public LockPatternViewListener(LockPatternView lockPatternView) {
         mLockPatternView = lockPatternView;
     }
 

@@ -26,7 +26,7 @@ import com.lzx.lock.utils.LockUtil;
 import com.lzx.lock.utils.SpUtil;
 import com.lzx.lock.utils.StatusBarUtil;
 import com.lzx.lock.widget.LockPatternView;
-import com.lzx.lock.widget.LockPatternViewPattern;
+import com.lzx.lock.widget.LockPatternViewListener;
 import com.lzx.lock.widget.UnLockMenuPopWindow;
 
 import java.util.List;
@@ -50,7 +50,7 @@ public class GestureUnlockActivity extends BaseActivity implements View.OnClickL
     private int mFailedPatternAttemptsSinceLastTimeout = 0;
     private CommLockInfoManager mLockInfoManager;
     private UnLockMenuPopWindow mPopWindow;
-    private LockPatternViewPattern mPatternViewPattern;
+    private LockPatternViewListener mPatternViewPattern;
     private GestureUnlockReceiver mGestureUnlockReceiver;
     private ApplicationInfo appInfo;
     public static final String FINISH_UNLOCK_THIS_APP = "finish_unlock_this_app";
@@ -140,8 +140,8 @@ public class GestureUnlockActivity extends BaseActivity implements View.OnClickL
     private void initLockPatternView() {
         mLockPatternView.setLineColorRight(0x80ffffff);
         mLockPatternUtils = new LockPatternUtils(this);
-        mPatternViewPattern = new LockPatternViewPattern(mLockPatternView);
-        mPatternViewPattern.setPatternListener(new LockPatternViewPattern.onPatternListener() {
+        mPatternViewPattern = new LockPatternViewListener(mLockPatternView);
+        mPatternViewPattern.setPatternListener(new LockPatternViewListener.onPatternListener() {
             @Override
             public void onPatternDetected(List<LockPatternView.Cell> pattern) {
                 if (mLockPatternUtils.checkPattern(pattern)) { //解锁成功,更改数据库状态
