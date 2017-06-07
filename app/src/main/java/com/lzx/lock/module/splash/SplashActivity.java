@@ -75,19 +75,21 @@ public class SplashActivity extends BaseActivity {
      * 弹出dialog
      */
     private void showDialog() {
-        if (!LockUtil.isStatAccessPermissionSet(SplashActivity.this)) {
-            DialogPermission dialog = new DialogPermission(SplashActivity.this);
-            dialog.show();
-            dialog.setOnClickListener(new DialogPermission.onClickListener() {
-                @Override
-                public void onClick() {
-                    Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-                    startActivityForResult(intent, RESULT_ACTION_USAGE_ACCESS_SETTINGS);
-                }
-            });
-        } else {
+
+         // 5.0 以下的系统会导致进不去
+//        if (!LockUtil.isStatAccessPermissionSet(SplashActivity.this)) {
+//            DialogPermission dialog = new DialogPermission(SplashActivity.this);
+//            dialog.show();
+//            dialog.setOnClickListener(new DialogPermission.onClickListener() {
+//                @Override
+//                public void onClick() {
+//                    Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+//                    startActivityForResult(intent, RESULT_ACTION_USAGE_ACCESS_SETTINGS);
+//                }
+//            });
+//        } else {
             gotoCreatePwdActivity();
-        }
+//        }
     }
 
     @Override
