@@ -24,13 +24,7 @@ public enum LockStage {
 
     ChoiceConfirmed(R.string.lock_pattern_confirmed_header, -1, false);
 
-    /**
-     * @param headerMessage  The message displayed at the top.
-     * @param footerMessage  The footer message.
-     * @param patternEnabled Whether the pattern widget is enabled.
-     */
-    LockStage(int headerMessage, int footerMessage,
-              boolean patternEnabled) {
+    LockStage(int headerMessage, int footerMessage,boolean patternEnabled) {
         this.headerMessage = headerMessage;
         this.footerMessage = footerMessage;
         this.patternEnabled = patternEnabled;
